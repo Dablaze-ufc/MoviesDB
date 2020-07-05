@@ -30,7 +30,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHo
     @Override
     public MoviesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        return  new MoviesViewHolder(layoutInflater.inflate(R.layout.list_items, parent,false));
+        return new MoviesViewHolder(layoutInflater.inflate(R.layout.list_items, parent, false));
     }
 
     @Override
@@ -44,14 +44,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHo
         return movieList.size();
     }
 
-    public class MoviesViewHolder extends RecyclerView.ViewHolder {
+    public static class MoviesViewHolder extends RecyclerView.ViewHolder {
         public MoviesViewHolder(@NonNull View itemView) {
             super(itemView);
         }
-        ImageView image;
 
         public void bind(final Movie movie, final OnItemClickListener onItemClickListener){
-            image = itemView.findViewById(R.id.imageView_movie_poster);
+            ImageView image = itemView.findViewById(R.id.imageView_movie_poster);
             String posterPathString = POSTER_BASE_URL + movie.getPosterPath();
 
             Picasso.get()

@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -80,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
     }
 
     private void getTopRated(){
+
+        if (isOnline()){
         Call<MoviesResponse> call = client.getTopRated(API_KEY);
         call.enqueue(new Callback<MoviesResponse>() {
             @Override
@@ -98,6 +99,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
                 Toast.makeText(MainActivity.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        }
+        hideProgressBar();
+        showSnackBar();
     }
 
     private void getPopular() {
@@ -123,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
             }
         });
         }else {
+            hideProgressBar();
             showSnackBar();
         }
     }
@@ -154,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
         View view = snackbar.getView();
         view.setBackgroundColor(ContextCompat.getColor(this
                 ,R.color.snackBarBackground));
-        snackbar.setText("Check network");
+        snackbar.setText("No internet Connection!");
         snackbar.setTextColor(Color.WHITE);
         snackbar.show();
 
@@ -172,14 +177,6 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
 
         Intent intent = new Intent(MainActivity.this, MovieDetailActivity.class)
                 .putExtra(INTENT_KEY, movie);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    MainActivity.this,
-                    imageView,
-                    imageView.getTransitionName()
-            ).toBundle();
-            startActivity(intent, bundle);
-        } else
             startActivity(intent);
 
     }
