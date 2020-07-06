@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+def API_KEY = '"' + ApiKey + '"' ?: '"Api key not found"'
+def STRING = 'String'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -12,7 +15,17 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // Please ensure you have a valid API KEY for themoviedb.org↵
+        //    to use this app
+        // A valid key will need to be entered
+        each{
+            type ->
+                type.buildConfigField STRING, 'Apikey', ApiKey
+        }
     }
+
+
 
     buildTypes {
         release {
