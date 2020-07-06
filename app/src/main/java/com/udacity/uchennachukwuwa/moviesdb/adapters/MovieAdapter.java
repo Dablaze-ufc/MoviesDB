@@ -16,6 +16,10 @@ import java.util.List;
 
 import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.POSTER_BASE_URL;
 
+/**
+ * Created by ChukwuwaUchenna
+ */
+
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MoviesViewHolder> {
     List<Movie> movieList;
     private OnItemClickListener onItemClickListener;

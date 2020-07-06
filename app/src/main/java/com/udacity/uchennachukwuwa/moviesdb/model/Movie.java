@@ -3,33 +3,49 @@ package com.udacity.uchennachukwuwa.moviesdb.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Created by ChukwuwaUchenna
+ */
+
+@Entity (tableName = "movie_table")
 public class Movie implements Parcelable {
+    @Ignore
     @SerializedName("adult")
     private Boolean mAdult;
 
     @SerializedName("backdrop_path")
     private String mBackdropPath;
 
+    @Ignore
     @SerializedName("genre_ids")
     private List<Integer> mGenreIds;
 
-
+    @PrimaryKey
+    @ColumnInfo(name = "id")
     @SerializedName("id")
     private int mId;
 
+    @Ignore
     @SerializedName("original_language")
     private String mOriginalLanguage;
 
+    @Ignore
     @SerializedName("original_title")
     private String mOriginalTitle;
 
     @SerializedName("overview")
     private String mOverview;
 
+    @Ignore
     @SerializedName("popularity")
     private double mPopularity;
 
@@ -42,12 +58,14 @@ public class Movie implements Parcelable {
     @SerializedName("title")
     private String mTitle;
 
+    @Ignore
     @SerializedName("video")
     private Boolean mVideo;
 
     @SerializedName("vote_average")
     private double mVoteAverage;
 
+    @Ignore
     @SerializedName("vote_count")
     private int mVoteCount;
 
@@ -81,7 +99,7 @@ public class Movie implements Parcelable {
         }
     };
 
-
+    @Ignore
     public Movie() {
     }
 
@@ -149,7 +167,7 @@ public class Movie implements Parcelable {
         return mVoteCount;
     }
 
-
+    @Ignore
     public Movie(Boolean adult, String backdropPath, List<Integer> genreIds, int id,
                  String originalLanguage, String originalTitle, String overview,
                  double popularity, String posterPath, String releaseDate, String title,

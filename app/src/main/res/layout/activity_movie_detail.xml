@@ -62,6 +62,70 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_poster" />
 
+        <TextView
+            android:id="@+id/textTrailer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/trailer"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/text_overview"
+            app:layout_constraintTop_toBottomOf="@id/text_overview"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/trailer_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/text_overview"
+            app:layout_constraintStart_toStartOf="@id/text_overview"
+            app:layout_constraintTop_toBottomOf="@id/textTrailer"
+            tools:listitem="@layout/list_item_trailer" />
+
+        <TextView
+            android:id="@+id/textReview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/reviews"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/trailer_recyclerview"
+            app:layout_constraintTop_toBottomOf="@+id/trailer_recyclerview"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/review_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/text_overview"
+            app:layout_constraintStart_toStartOf="@id/text_overview"
+            app:layout_constraintTop_toBottomOf="@id/textReview"
+            tools:listitem="@layout/review_list_item" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/favoriteButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/make_favorite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/text_rating" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/removeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_poster"
+            app:layout_constraintTop_toBottomOf="@+id/text_rating" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

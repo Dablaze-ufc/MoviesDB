@@ -14,6 +14,10 @@ import com.udacity.uchennachukwuwa.moviesdb.model.Movie;
 import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.INTENT_KEY;
 import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.POSTER_BASE_URL;
 
+/**
+ * Created by ChukwuwaUchenna
+ */
+
 public class MovieDetailActivity extends AppCompatActivity {
     ImageView posterImage;
     TextView movieTitle, movieRating, movieOverview, movieReleaseDate;

@@ -1,4 +1,17 @@
 package com.udacity.uchennachukwuwa.moviesdb.ui.movieDetail;
 
-public class MovieDetailViewModel {
+
+import android.app.Application;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+
+/**
+ * Created by ChukwuwaUchenna
+ */
+
+public class MovieDetailViewModel extends AndroidViewModel {
+    public MovieDetailViewModel(@NonNull Application application) {
+        super(application);
+    }
 }

@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">MoviesDB</string>
     <string name="movie_poster">Movie poster</string>
+    <string name="make_favorite">Add to Favourites</string>
+    <string name="reviews">Reviews</string>
+    <string name="trailer">Trailers</string>
+    <string name="play_image">Play Image</string>
 </resources>

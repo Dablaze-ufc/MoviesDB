@@ -1,11 +1,13 @@
 package com.udacity.uchennachukwuwa.moviesdb.model;
 
 import com.google.gson.annotations.SerializedName;
-import com.udacity.uchennachukwuwa.moviesdb.model.Movie;
 
 import java.util.List;
-@SuppressWarnings("unused")
 
+/**
+ * Created by ChukwuwaUchenna
+ */
+@SuppressWarnings("unused")
 public class MoviesResponse {
 
         @SerializedName("page")
