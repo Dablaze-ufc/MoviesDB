@@ -57,16 +57,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
 
 
         mViewModel.online.observe(this, this::showSnackBar);
-        mViewModel.state.observe(this, state -> {
-            switch (state) {
-                case "Loading":
-                    showProgressBar();
-                case "Done":
-                    hideProgressBar();
-                default:
-                    hideProgressBar();
-            }
-        });
+        mViewModel.state.observe(this, this::onChanged);
 
 
     }
@@ -117,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
 
         if (!online) {
             Snackbar snackbar = Snackbar
-                    .make(mProgressBar, "No internet Connection! ", Snackbar.LENGTH_LONG)
-                    .setAction("Check settings", view -> {
+                    .make(mProgressBar, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
+                    .setAction(R.string.check_settings, view -> {
                         Intent settings = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
                         this.startActivity(settings);
                     });
@@ -126,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
             View view = snackbar.getView();
             view.setBackgroundColor(ContextCompat.getColor(this
                     , R.color.snackBarBackground));
-            snackbar.setText("No internet Connection!");
+            snackbar.setText(getString(R.string.no_internet));
             snackbar.setTextColor(Color.WHITE);
             snackbar.show();
         }
@@ -143,5 +134,16 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
                 .putExtra(INTENT_KEY, movie);
         startActivity(intent);
 
+    }
+
+    private void onChanged(int state) {
+        switch (state) {
+            case R.string.loading_progress:
+                showProgressBar();
+            case R.string.done_state:
+                hideProgressBar();
+            default:
+                hideProgressBar();
+        }
     }
 }

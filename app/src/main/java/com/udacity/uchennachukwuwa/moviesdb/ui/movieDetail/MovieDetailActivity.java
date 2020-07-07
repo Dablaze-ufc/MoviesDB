@@ -93,13 +93,13 @@ public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAd
                     mButton.setText(getString(R.string.remove_button_text_favourite));
                     mViewModel.removeFromFavourites(movie);
                     editor.putBoolean(String.valueOf(movie.getId()),false);
-                    Toast.makeText(this, "Removed From Favourites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.toast_message_removed), Toast.LENGTH_SHORT).show();
                 }else {
                     //Add movie to favourite
                     mButton.setText(getString(R.string.add_button_text_favourite));
                     mViewModel.addToFavourites(movie);
                     editor.putBoolean(String.valueOf(movie.getId()), true);
-                    Toast.makeText(this, "Added To Favourites", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, getString(R.string.toast_message_added), Toast.LENGTH_SHORT).show();
                 }
                 finish();
                 editor.apply();
@@ -120,8 +120,8 @@ public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAd
 
             if (!online) {
                 Snackbar snackbar = Snackbar
-                        .make(mReviewsRecyclerView, "No internet Connection! ", Snackbar.LENGTH_LONG)
-                        .setAction("Check settings", view -> {
+                        .make(mReviewsRecyclerView, getString(R.string.no_internet), Snackbar.LENGTH_LONG)
+                        .setAction(R.string.check_settings, view -> {
                             Intent settings = new Intent(Settings.ACTION_WIRELESS_SETTINGS);
                             this.startActivity(settings);
                         });
@@ -129,7 +129,7 @@ public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAd
                 View view = snackbar.getView();
                 view.setBackgroundColor(ContextCompat.getColor(this
                         , R.color.snackBarBackground));
-                snackbar.setText("No internet Connection!");
+                snackbar.setText(getString(R.string.no_internet));
                 snackbar.setTextColor(Color.WHITE);
                 snackbar.show();
             }

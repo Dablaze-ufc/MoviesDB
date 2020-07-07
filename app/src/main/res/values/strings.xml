@@ -10,4 +10,10 @@
     <string name="popular">Popular</string>
     <string name="top_rated">Top rated</string>
     <string name="favourites">Favourites</string>
+    <string name="toast_message_removed">Removed From Favourites</string>
+    <string name="toast_message_added">Added To Favourites</string>
+    <string name="no_internet">\"No internet Connection! \"</string>
+    <string name="check_settings">Check settings</string>
+    <string name="loading_progress">Loading</string>
+    <string name="done_state">Done</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.udacity.uchennachukwuwa.moviesdb.R;
 import com.udacity.uchennachukwuwa.moviesdb.model.Movie;
 import com.udacity.uchennachukwuwa.moviesdb.model.MoviesResponse;
 import com.udacity.uchennachukwuwa.moviesdb.repository.MovieRepository;
@@ -34,16 +35,16 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> _message = new MutableLiveData<>();
     private MutableLiveData<Boolean> _online = new MutableLiveData<>();
-    private MutableLiveData<String> _state = new MutableLiveData<>();
+    private MutableLiveData<Integer> _state = new MutableLiveData<>();
     public LiveData<List<Movie>> moviesList = _moviesList;
     public LiveData<String> message = _message;
     public LiveData<Boolean> online = _online;
-    public LiveData<String> state = _state;
+    public LiveData<Integer> state = _state;
 
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
-        _state.setValue("Loading");
+        _state.setValue(R.string.loading_progress);
         mRepository = new MovieRepository(application);
         this.app = application;
         _online.setValue(isOnline());
@@ -61,7 +62,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
 
     public void getTopRated() {
-        _state.setValue("Loading");
+        _state.setValue(R.string.loading_progress);
 
         if (isOnline()) {
 
@@ -69,7 +70,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 @Override
                 public void onResponse(@NonNull Call<MoviesResponse> call, @NonNull Response<MoviesResponse> response) {
                     if (response.code() == 200) {
-                        _state.setValue("Done");
+                        _state.setValue(R.string.done_state);
                         assert response.body() != null;
                         _moviesList.setValue(response.body().getResults());
 
@@ -80,7 +81,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 @Override
                 public void onFailure(@NonNull Call<MoviesResponse> call, @NonNull Throwable t) {
                     _message.setValue(t.getLocalizedMessage());
-                    _state.setValue("Done");
+                    _state.setValue(R.string.done_state);
                 }
             });
         } else {
@@ -90,7 +91,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
 
     public void getPopular() {
-        _state.setValue("Loading");
+        _state.setValue(R.string.loading_progress);
 
         if (isOnline()) {
 
@@ -98,7 +99,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 @Override
                 public void onResponse(@NonNull Call<MoviesResponse> call, @NonNull Response<MoviesResponse> response) {
                     if (response.code() == 200) {
-                        _state.setValue("Done");
+                        _state.setValue(R.string.done_state);
                         assert response.body() != null;
                         _moviesList.setValue(response.body().getResults());
                     }
@@ -110,7 +111,7 @@ public class MainActivityViewModel extends AndroidViewModel {
                 }
             });
         } else {
-            _state.setValue("Done");
+            _state.setValue(R.string.done_state);
             _online.setValue(false);
         }
     }
