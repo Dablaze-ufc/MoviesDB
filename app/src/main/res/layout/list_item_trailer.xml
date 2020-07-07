@@ -3,28 +3,26 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text_author"
+    <ImageView
+        android:id="@+id/image_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        android:textStyle="bold"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_baseline_play_arrow_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/play_image" />
 
     <TextView
-        android:id="@+id/text_content"
-        android:layout_width="0dp"
+        android:id="@+id/tv_trailer"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/text_author"
-        app:layout_constraintTop_toBottomOf="@+id/text_author"/>
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toEndOf="@+id/image_play"
+        app:layout_constraintTop_toTopOf="@+id/image_play" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

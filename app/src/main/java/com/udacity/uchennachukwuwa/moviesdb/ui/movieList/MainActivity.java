@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
             mRecyclerView.setAdapter(adapter);
         });
 
+
+
         mViewModel.online.observe(this, this::showSnackBar);
         mViewModel.state.observe(this, state -> {
             switch (state) {
@@ -88,9 +90,18 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
                 showProgressBar();
                 mViewModel.getTopRated();
                 return true;
+            case R.id.favourites:
+                getFavourite();
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void getFavourite() {
+        mViewModel.getFavourite().observe(this,list ->{
+            MovieAdapter adapter = new MovieAdapter(list, MainActivity.this);
+            mRecyclerView.setAdapter(adapter);
+        });
     }
 
 

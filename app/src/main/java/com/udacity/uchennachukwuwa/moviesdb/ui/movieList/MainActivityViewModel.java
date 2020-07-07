@@ -30,14 +30,15 @@ public class MainActivityViewModel extends AndroidViewModel {
     private MovieRepository mRepository;
     private Application app;
     private MutableLiveData<List<Movie>> _moviesList = new MutableLiveData<>();
+    private MutableLiveData<List<Movie>> _favMoviesList = new MutableLiveData<>();
+
     private MutableLiveData<String> _message = new MutableLiveData<>();
     private MutableLiveData<Boolean> _online = new MutableLiveData<>();
-    private MutableLiveData<String> _state =  new MutableLiveData<>();
+    private MutableLiveData<String> _state = new MutableLiveData<>();
     public LiveData<List<Movie>> moviesList = _moviesList;
     public LiveData<String> message = _message;
     public LiveData<Boolean> online = _online;
     public LiveData<String> state = _state;
-
 
 
     public MainActivityViewModel(@NonNull Application application) {
@@ -47,12 +48,22 @@ public class MainActivityViewModel extends AndroidViewModel {
         this.app = application;
         _online.setValue(isOnline());
         getPopular();
+
     }
 
-    public void getTopRated(){
+    public LiveData<List<Movie>> getFavourite() {
+       if (mRepository.getFavoriteMovies() == null){
+          return  _favMoviesList= new MutableLiveData<>();
+       }else{
+           return mRepository.getFavoriteMovies();
+       }
+    }
+
+
+    public void getTopRated() {
         _state.setValue("Loading");
 
-        if (isOnline()){
+        if (isOnline()) {
 
             mRepository.getRatedMovies(API_KEY).enqueue(new Callback<MoviesResponse>() {
                 @Override
@@ -65,23 +76,23 @@ public class MainActivityViewModel extends AndroidViewModel {
 
                     }
                 }
+
                 @Override
                 public void onFailure(@NonNull Call<MoviesResponse> call, @NonNull Throwable t) {
                     _message.setValue(t.getLocalizedMessage());
                     _state.setValue("Done");
                 }
             });
-        }
-        else {
+        } else {
             _online.setValue(false);
         }
     }
 
 
-    public void getPopular(){
+    public void getPopular() {
         _state.setValue("Loading");
 
-        if (isOnline()){
+        if (isOnline()) {
 
             mRepository.getPopularMovies(API_KEY).enqueue(new Callback<MoviesResponse>() {
                 @Override
@@ -92,13 +103,13 @@ public class MainActivityViewModel extends AndroidViewModel {
                         _moviesList.setValue(response.body().getResults());
                     }
                 }
+
                 @Override
                 public void onFailure(@NonNull Call<MoviesResponse> call, @NonNull Throwable t) {
                     _message.setValue(t.getLocalizedMessage());
                 }
             });
-        }
-        else {
+        } else {
             _state.setValue("Done");
             _online.setValue(false);
         }
@@ -112,5 +123,6 @@ public class MainActivityViewModel extends AndroidViewModel {
         return cm.getActiveNetworkInfo() != null &&
                 cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
+
 
 }

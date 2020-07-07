@@ -5,4 +5,9 @@
     <string name="reviews">Reviews</string>
     <string name="trailer">Trailers</string>
     <string name="play_image">Play Image</string>
+    <string name="remove_button_text_favourite">Remove From Favourite</string>
+    <string name="add_button_text_favourite">Add To Favourite</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top rated</string>
+    <string name="favourites">Favourites</string>
 </resources>

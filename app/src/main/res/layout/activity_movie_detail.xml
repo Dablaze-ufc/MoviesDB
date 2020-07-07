@@ -82,7 +82,7 @@
             app:layout_constraintEnd_toEndOf="@id/text_overview"
             app:layout_constraintStart_toStartOf="@id/text_overview"
             app:layout_constraintTop_toBottomOf="@id/textTrailer"
-            tools:listitem="@layout/list_item_trailer" />
+            tools:listitem="@layout/list_item_review" />
 
         <TextView
             android:id="@+id/textReview"
@@ -104,10 +104,10 @@
             app:layout_constraintEnd_toEndOf="@id/text_overview"
             app:layout_constraintStart_toStartOf="@id/text_overview"
             app:layout_constraintTop_toBottomOf="@id/textReview"
-            tools:listitem="@layout/review_list_item" />
+            tools:listitem="@layout/list_item_trailer" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/favoriteButton"
+            android:id="@+id/favorite_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -116,16 +116,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/image_poster"
             app:layout_constraintTop_toBottomOf="@+id/text_rating" />
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/removeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_poster"
-            app:layout_constraintTop_toBottomOf="@+id/text_rating" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
