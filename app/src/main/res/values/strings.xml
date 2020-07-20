@@ -16,4 +16,5 @@
     <string name="check_settings">Check settings</string>
     <string name="loading_progress">Loading</string>
     <string name="done_state">Done</string>
+    <string name="transition_name">my transition</string>
 </resources>

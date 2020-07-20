@@ -12,6 +12,7 @@ public class Constant {
     public static String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342";
     public static String INTENT_KEY = "movie_item";
     public final static String PREF_KEY = "com.udacity.uchennachukwuwa.moviesdb.fav_pref_key";
+    public final static String BACKDROP_BASE_URL = "https://image.tmdb.org/t/p/w780";
 
     public final static String YOUTUBE_BASE_URL = "https://www.youtube.com/watch?v=";
 }

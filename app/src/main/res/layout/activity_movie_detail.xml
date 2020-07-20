@@ -1,55 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:context=".MovieDetailActivity">
 
-        <TextView
-            android:id="@+id/text_tittle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="#3E9187"
-            android:padding="16dp"
-            android:textColor="#FFFFFF"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
             android:contentDescription="@string/movie_poster"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
+            android:transitionName="@string/transition_name"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_tittle" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_release_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="54dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintStart_toEndOf="@+id/image_poster"
-            app:layout_constraintTop_toTopOf="@+id/image_poster" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/text_rating"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image_poster" />
 
         <TextView
             android:id="@+id/text_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="@+id/text_release_year"
-            app:layout_constraintStart_toStartOf="@+id/text_release_year"
-            app:layout_constraintTop_toBottomOf="@+id/text_release_year" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/text_release_year"
+            app:layout_constraintTop_toTopOf="@+id/text_release_year" />
 
         <TextView
             android:id="@+id/text_overview"
@@ -60,7 +56,7 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_poster" />
+            app:layout_constraintTop_toBottomOf="@+id/text_rating" />
 
         <TextView
             android:id="@+id/textTrailer"
@@ -71,7 +67,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/text_overview"
-            app:layout_constraintTop_toBottomOf="@id/text_overview"/>
+            app:layout_constraintTop_toBottomOf="@id/text_overview" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/trailer_recyclerview"
@@ -93,7 +89,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/trailer_recyclerview"
-            app:layout_constraintTop_toBottomOf="@+id/trailer_recyclerview"/>
+            app:layout_constraintTop_toBottomOf="@+id/trailer_recyclerview" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/review_recyclerview"
@@ -106,15 +102,17 @@
             app:layout_constraintTop_toBottomOf="@id/textReview"
             tools:listitem="@layout/list_item_trailer" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/favorite_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@string/make_favorite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/image_poster"
-            app:layout_constraintTop_toBottomOf="@+id/text_rating" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/favorite_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:backgroundTint="@android:color/white"
+        app:icon="@drawable/ic_star"
+        app:iconTint="#FFA900" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

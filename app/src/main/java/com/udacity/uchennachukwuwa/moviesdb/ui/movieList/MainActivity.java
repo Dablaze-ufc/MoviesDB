@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,7 +59,13 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
 
 
         mViewModel.online.observe(this, this::showSnackBar);
-        mViewModel.state.observe(this, this::onChanged);
+        mViewModel.state.observe(this, state ->{
+            if (TextUtils.equals(state,getString(R.string.loading_progress))){
+                showProgressBar();
+            }else {
+                hideProgressBar();
+            }
+        });
 
 
     }
@@ -132,9 +140,15 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
 
         Intent intent = new Intent(MainActivity.this, MovieDetailActivity.class)
                 .putExtra(INTENT_KEY, movie);
-        startActivity(intent);
-
+        Bundle bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                MainActivity.this,
+                imageView,
+                imageView.getTransitionName()
+        ).toBundle();
+        startActivity(intent, bundle);
     }
+
+
 
     private void onChanged(int state) {
         switch (state) {

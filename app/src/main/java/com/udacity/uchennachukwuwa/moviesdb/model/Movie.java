@@ -69,6 +69,7 @@ public class Movie implements Parcelable {
     @SerializedName("vote_count")
     private int mVoteCount;
 
+
     protected Movie(Parcel in) {
         byte tmpMAdult = in.readByte();
         mAdult = tmpMAdult == 0 ? null : tmpMAdult == 1;
@@ -85,6 +86,7 @@ public class Movie implements Parcelable {
         mVideo = tmpMVideo == 0 ? null : tmpMVideo == 1;
         mVoteAverage = in.readDouble();
         mVoteCount = in.readInt();
+
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
@@ -166,6 +168,7 @@ public class Movie implements Parcelable {
     public int getVoteCount() {
         return mVoteCount;
     }
+
 
     @Ignore
     public Movie(Boolean adult, String backdropPath, List<Integer> genreIds, int id,

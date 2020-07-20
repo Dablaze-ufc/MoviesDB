@@ -16,7 +16,7 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 import com.udacity.uchennachukwuwa.moviesdb.R;
@@ -24,8 +24,8 @@ import com.udacity.uchennachukwuwa.moviesdb.adapters.ReviewsAdapter;
 import com.udacity.uchennachukwuwa.moviesdb.adapters.TrailersAdapter;
 import com.udacity.uchennachukwuwa.moviesdb.model.Movie;
 
+import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.BACKDROP_BASE_URL;
 import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.INTENT_KEY;
-import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.POSTER_BASE_URL;
 import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.PREF_KEY;
 import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.YOUTUBE_BASE_URL;
 
@@ -36,7 +36,7 @@ import static com.udacity.uchennachukwuwa.moviesdb.constant.Constant.YOUTUBE_BAS
 public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAdapter.OnItemClickListener, TrailersAdapter.OnItemClickListener {
     private MovieDetailViewModel mViewModel;
     private RecyclerView mTrailersRecyclerView, mReviewsRecyclerView;
-    private MaterialButton mButton;
+    private ExtendedFloatingActionButton mButton;
 
 
     @Override
@@ -50,7 +50,7 @@ public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAd
         mTrailersRecyclerView = findViewById(R.id.trailer_recyclerview);
         mReviewsRecyclerView = findViewById(R.id.review_recyclerview);
         ImageView posterImage = findViewById(R.id.image_poster);
-        TextView movieTitle = findViewById(R.id.text_tittle);
+//        TextView movieTitle = findViewById(R.id.text_tittle);
         TextView movieOverview = findViewById(R.id.text_overview);
         TextView movieRating = findViewById(R.id.text_rating);
         TextView movieReleaseDate = findViewById(R.id.text_release_year);
@@ -65,12 +65,13 @@ public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAd
             mViewModel.getReviews(movie.getId());
             mViewModel.getTrailers(movie.getId());
             String voteAverage = movie.getVoteAverage() + "/" + "10";
-            movieTitle.setText(movie.getOriginalTitle());
+//            movieTitle.setText(movie.getOriginalTitle());
+            getSupportActionBar().setTitle(movie.getOriginalTitle());
             movieOverview.setText(movie.getOverview());
             movieReleaseDate.setText(movie.getReleaseDate());
             movieRating.setText(voteAverage);
 
-            String posterString = POSTER_BASE_URL + movie.getPosterPath();
+            String posterString = BACKDROP_BASE_URL + movie.getPosterPath();
 
             Picasso.get()
                     .load(posterString)
@@ -82,21 +83,22 @@ public class MovieDetailActivity extends AppCompatActivity  implements ReviewsAd
             SharedPreferences.Editor editor = preferences.edit();
             if (preferences.getBoolean(String.valueOf(movie.getId()), false)) {
                 // Already a favorite
-                mButton.setText(getString(R.string.remove_button_text_favourite));
+
+                mButton.setIcon(getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
             } else {
-                mButton.setText(getString(R.string.add_button_text_favourite));
+                mButton.setIcon(getResources().getDrawable(R.drawable.ic_star));
             }
 
             mButton.setOnClickListener(view ->{
                 if (preferences.getBoolean(String.valueOf(movie.getId()), false)){
                     //Movie already exist in the favourites List
-                    mButton.setText(getString(R.string.remove_button_text_favourite));
+                    mButton.setIcon(getResources().getDrawable(R.drawable.ic_baseline_favorite_24));
                     mViewModel.removeFromFavourites(movie);
                     editor.putBoolean(String.valueOf(movie.getId()),false);
                     Toast.makeText(this, getString(R.string.toast_message_removed), Toast.LENGTH_SHORT).show();
                 }else {
                     //Add movie to favourite
-                    mButton.setText(getString(R.string.add_button_text_favourite));
+                    mButton.setIcon(getResources().getDrawable(R.drawable.ic_star));
                     mViewModel.addToFavourites(movie);
                     editor.putBoolean(String.valueOf(movie.getId()), true);
                     Toast.makeText(this, getString(R.string.toast_message_added), Toast.LENGTH_SHORT).show();
